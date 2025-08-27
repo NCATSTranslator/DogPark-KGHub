@@ -1,5 +1,6 @@
 {
     "version": "0.1",
+    "requires": ["jsonlines"],
     "dumper": {
         "data_url": [
             "https://stars.renci.org/var/plater/bl-4.2.6/CEBS_Automat/6a77f858e1b9852c/edges.jsonl",
@@ -11,9 +12,14 @@
     },
     "uploaders": [
       {
-            "name" : "CEBS_merged_edges",
+            "name" : "CEBS_edges",
             "parser": "parser:load_edges",
             "on_duplicates": "merge"
-        }
+      },
+      {
+            "name" : "CEBS_nodes",
+            "parser": "parser:load_nodes",
+            "on_duplicates": "merge"
+      }
     ]
 }
