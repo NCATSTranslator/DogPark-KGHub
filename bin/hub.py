@@ -3,11 +3,11 @@
 import os
 import config, biothings
 from biothings.utils.version import set_versions
-from standalone.utils.version import set_standalone_version
+# from standalone.utils.version import set_standalone_version
 
 app_folder, _src = os.path.split(os.path.split(os.path.abspath(__file__))[0])
 set_versions(config, app_folder)
-set_standalone_version(config, "standalone")
+# set_standalone_version(config, "standalone")
 biothings.config_for_app(config)
 logging = config.logger
 
