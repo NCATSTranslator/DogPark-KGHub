@@ -14,12 +14,14 @@
       {
             "name" : "CEBS_edges",
             "parser": "parser:load_edges",
-            "on_duplicates": "merge"
+            "on_duplicates": "merge",
+            "mapping": "mapping:edges_mapping"
       },
       {
             "name" : "CEBS_nodes",
             "parser": "parser:load_nodes",
-            "on_duplicates": "merge"
+            "on_duplicates": "merge",
+            "mapping": "mapping:nodes_mapping"
       }
     ]
 }
