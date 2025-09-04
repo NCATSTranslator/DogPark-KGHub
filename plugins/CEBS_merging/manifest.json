@@ -13,7 +13,7 @@
     "uploaders": [
       {
             "name" : "CEBS_merged_edges",
-            "parser": "parser:load_merged_edges",
+            "parser": "hub.dataload.data_parsers:load_merged_edges",
             "on_duplicates": "merge",
             "mapping": "mapping:merged_edges_mapping"
       }
