@@ -15,9 +15,7 @@ def edges_mapping(cls):
         "species_context_qualifier": default_text,
         "subject": default_text,
     }
-    return {
-        "properties": edges_props,
-    }
+    return edges_props
 
 def nodes_mapping(cls):
     default_text = {"type": "text", "fields": {"keyword": {"type": "keyword", "ignore_above": 256}}}
@@ -30,6 +28,4 @@ def nodes_mapping(cls):
             "type": "float"
         }
     }
-    return {
-        "properties": nodes_props,
-    }
+    return nodes_props
