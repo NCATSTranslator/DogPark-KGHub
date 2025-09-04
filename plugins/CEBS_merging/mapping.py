@@ -28,9 +28,7 @@ def merged_edges_mapping(cls):
 
 
     return {
-        "properties": {
             **edges_props,
             "subject": nodes_props,
             "object": nodes_props,
         }
-    }
