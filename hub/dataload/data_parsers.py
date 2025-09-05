@@ -53,9 +53,9 @@ def load_merged_edges(data_folder: Union[str, pathlib.Path]):
         edge["subject"] = nodes[subject_id]
         edge["object"] = nodes[object_id]
 
-        # experimental with id
-        assert edge["_id"] is not None
-        edge['id'] = edge["_id"]
+        # # experimental with id
+        # assert edge["_id"] is not None
+        # edge['id'] = edge["_id"]
 
         buffer.append(edge)
 
