@@ -217,5 +217,8 @@ config.py
 *.biothings_hub/
 
 
+# plugin dev hub
+plugins/*/hub/
+
 # jetbrains configs
 .idea
