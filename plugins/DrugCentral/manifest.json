@@ -6,7 +6,7 @@
             "https://stars.renci.org/var/plater/bl-4.2.1/DrugCentral_Automat/dec0617490b49c7a/edges.jsonl.gz",
             "https://stars.renci.org/var/plater/bl-4.2.1/DrugCentral_Automat/dec0617490b49c7a/nodes.jsonl.gz"
         ],
-        "uncompress": true,
+        "uncompress": false,
         "release": "version:get_version",
         "schedule": "0 0 * * *"
     },
