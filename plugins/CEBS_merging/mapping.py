@@ -1,4 +1,4 @@
-def edges_mapping(cls):
+def merged_edges_mapping(cls):
     default_text = {"type": "text", "fields": {"keyword": {"type": "keyword", "ignore_above": 256}}}
     edges_props = {
         "agent_type": default_text,
@@ -15,10 +15,7 @@ def edges_mapping(cls):
         "species_context_qualifier": default_text,
         "subject": default_text,
     }
-    return edges_props
 
-def nodes_mapping(cls):
-    default_text = {"type": "text", "fields": {"keyword": {"type": "keyword", "ignore_above": 256}}}
     nodes_props = {
         "id": default_text,
         "name": default_text,
@@ -28,4 +25,10 @@ def nodes_mapping(cls):
             "type": "float"
         }
     }
-    return nodes_props
+
+
+    return {
+            **edges_props,
+            "subject": nodes_props,
+            "object": nodes_props,
+        }
