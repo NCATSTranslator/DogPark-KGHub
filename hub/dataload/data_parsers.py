@@ -1,7 +1,7 @@
 import gzip
 import pathlib
+from collections import defaultdict
 from contextlib import contextmanager
-from functools import partial
 
 import jsonlines
 from typing import Union, Literal
@@ -89,9 +89,44 @@ def load_merged_edges(data_folder: Union[str, pathlib.Path]):
     if len(buffer) > 0:
         yield from buffer
 
+def build_node_edge_mapping(edges):
 
+    # try to build
+    # 0) a node_id -> in/out edge mapping
+    # 1) an edge_id -> edge mapping
+    nodes_mapping = defaultdict(lambda: {"in" : set(), "out": set()})
+    edges_mapping = {}
 
+    for edge in edges:
+        edge_id = edge['_id']
+        subject_node = edge["subject"]
+        object_node = edge["object"]
 
+        nodes_mapping[subject_node]["out"].add(edge_id)
+        nodes_mapping[object_node]["in"].add(edge_id)
 
+        edges_mapping[edge_id] = edge
 
+    return nodes_mapping, edges_mapping
 
+def load_adjacency_nodes(data_folder: Union[str, pathlib.Path]):
+
+    # get reference mappings
+    nodes_mapping, edges_mapping = build_node_edge_mapping(load_edges(data_folder))
+
+    buffer = []
+
+    for node in load_nodes(data_folder):
+        node_id = node["_id"]
+
+        node['in_edges'] = [edges_mapping[edge_id] for edge_id in nodes_mapping[node_id]["in"]]
+        node['out_edges'] = [edges_mapping[edge_id] for edge_id in nodes_mapping[node_id]["out"]]
+
+        buffer.append(node)
+
+        if len(buffer) == EDGE_BUFFER_SIZE:
+            yield from buffer
+            buffer = []
+
+    if len(buffer) > 0:
+        yield from buffer
