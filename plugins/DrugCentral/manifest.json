@@ -19,7 +19,7 @@
     "uploaders": [
       {
             "name" : "DrugCentral",
-            "parser": "hub.dataload.data_parsers:load_merged_edges",
+            "parser": "hub.dataload.data_parsers:load_adjacency_nodes",
             "on_duplicates": "merge"
       }
     ]
