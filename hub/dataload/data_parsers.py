@@ -6,6 +6,10 @@ from contextlib import contextmanager
 import jsonlines
 from typing import Union, Literal
 
+from hub.dataload.utils.flatten_publication import process_publications
+from hub.dataload.utils.process_category import process_category
+from hub.dataload.utils.process_predicate import process_predicate
+
 NODE_BUFFER_SIZE = 4096
 EDGE_BUFFER_SIZE = 2048
 
@@ -76,6 +80,7 @@ def load_nodes(data_folder: Union[str, pathlib.Path]):
     yield from loader(data_folder, "nodes")
 
 
+
 @buffered_yield(EDGE_BUFFER_SIZE)
 def load_merged_edges(data_folder: Union[str, pathlib.Path]):
     """ Generate merged edge data"""
@@ -83,12 +88,24 @@ def load_merged_edges(data_folder: Union[str, pathlib.Path]):
     # use loaded node info as reference dict
     nodes = {node['id']: node for node in load_nodes(data_folder)}
 
+    predicate_cache = {}
+    category_cache = {}
+
     for edge in load_edges(data_folder):
+        process_publications(edge)
+
         subject_id = edge["subject"]
         object_id = edge["object"]
 
-        edge["subject"] = nodes[subject_id]
-        edge["object"] = nodes[object_id]
+        subject_node = nodes[subject_id]
+        object_node = nodes[object_id]
+
+        process_predicate(edge, predicate_cache)
+        process_category(subject_node, category_cache)
+        process_category(object_node, category_cache)
+
+        edge["subject"] = subject_node
+        edge["object"] = object_node
 
         yield edge
 
