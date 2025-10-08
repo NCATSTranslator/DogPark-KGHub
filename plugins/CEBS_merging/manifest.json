@@ -1,6 +1,6 @@
 {
     "version": "0.1",
-    "requires": ["jsonlines"],
+    "requires": ["jsonlines", "bmt"],
     "dumper": {
         "data_url": [
             "https://stars.renci.org/var/plater/bl-4.2.6/CEBS_Automat/6a77f858e1b9852c/edges.jsonl",
