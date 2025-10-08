@@ -1,6 +1,6 @@
 {
     "version": "0.1",
-    "requires": ["jsonlines"],
+    "requires": ["jsonlines", "bmt"],
     "__metadata__": {
           "license_url": "https://creativecommons.org/licenses/by/4.0/",
           "license": "Creative Commons Attribution 4.0 International License",
@@ -19,7 +19,7 @@
     "uploaders": [
       {
             "name" : "DrugCentral",
-            "parser": "hub.dataload.data_parsers:load_adjacency_nodes",
+            "parser": "hub.dataload.data_parsers:load_merged_edges",
             "on_duplicates": "merge"
       }
     ]
