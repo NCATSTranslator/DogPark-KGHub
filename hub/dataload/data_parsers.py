@@ -58,7 +58,7 @@ def read_jsonl(input_file: Union[str, pathlib.Path]):
         index = 0
         for doc in source:
             if doc:
-                doc["_id"] = doc["id"] if "id" in doc else str(index)
+                # doc["_id"] = doc["id"] if "id" in doc else str(index)
                 index += 1
                 yield doc
 
@@ -92,6 +92,7 @@ def load_merged_edges(data_folder: Union[str, pathlib.Path]):
     predicate_cache = {}
     category_cache = {}
 
+    index = 0
     for edge in load_edges(data_folder):
         process_publications(edge)
 
@@ -107,6 +108,9 @@ def load_merged_edges(data_folder: Union[str, pathlib.Path]):
 
         edge["subject"] = subject_node
         edge["object"] = object_node
+
+        edge["_id"] = str(index)
+        index += 1
 
         yield edge
 
