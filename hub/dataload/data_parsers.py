@@ -57,9 +57,10 @@ def read_jsonl(input_file: Union[str, pathlib.Path]):
     with file_loader(input_file) as source:
         index = 0
         for doc in source:
-            doc["_id"] = doc["id"] if "id" in doc else str(index)
-            index += 1
-            yield doc
+            if doc:
+                doc["_id"] = doc["id"] if "id" in doc else str(index)
+                index += 1
+                yield doc
 
 
 
