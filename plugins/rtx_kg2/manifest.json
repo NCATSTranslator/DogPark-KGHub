@@ -12,7 +12,7 @@
     },
     "uploaders": [
         {
-            "name" : "rtx_kg2_edges_merged",
+            "name" : "rtx_kg2",
             "parser": "hub.dataload.data_parsers:load_merged_edges",
             "on_duplicates": "merge",
             "mapping" : "mapping:merged_edges_mapping"
