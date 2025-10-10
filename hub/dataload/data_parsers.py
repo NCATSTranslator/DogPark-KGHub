@@ -109,7 +109,7 @@ def load_merged_edges(data_folder: Union[str, pathlib.Path]):
         edge["subject"] = subject_node
         edge["object"] = object_node
 
-        edge["_id"] = edge["id"] if "id" in edge else str(index)
+        edge["_id"] = str(edge["id"]) if "id" in edge else str(index)
         index += 1
 
         yield edge
