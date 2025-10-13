@@ -17,15 +17,12 @@ def merged_edges_mapping(cls):
     }
 
     nodes_props = {
-        "type": "object",
-        "properties": {
-            "id": default_text,
-            "name": default_text,
-            "category": default_text,
-            "equivalent_identifiers": default_text,
-            "information_content": {
-                "type": "float"
-            }
+        "id": default_text,
+        "name": default_text,
+        "category": default_text,
+        "equivalent_identifiers": default_text,
+        "information_content": {
+            "type": "float"
         }
     }
 
